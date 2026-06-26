@@ -1,0 +1,37 @@
+@use 'sass:map';
+@use 'variables' as v;
+
+$theme-colors: (
+  'primary': v.$primary-color,
+  'primary-hover': v.$primary-hover,
+  'primary-light': v.$primary-light,
+  'secondary': v.$secondary-color,
+  'secondary-hover': v.$secondary-hover,
+  'background': v.$background-color,
+  'background-subtle': v.$background-subtle,
+  'surface': v.$surface-color,
+  'surface-elevated': v.$surface-elevated,
+  'text-primary': v.$text-primary,
+  'text-secondary': v.$text-secondary,
+  'text-muted': v.$text-muted,
+  'text-inverse': v.$text-inverse,
+  'success': v.$success-color,
+  'warning': v.$warning-color,
+  'error': v.$error-color,
+  'border': v.$border-color,
+  'border-focus': v.$border-focus,
+  'priority-low': v.$priority-low,
+  'priority-medium': v.$priority-medium,
+  'priority-high': v.$priority-high,
+  'status-open': v.$status-open,
+  'status-progress': v.$status-progress,
+  'status-done': v.$status-done,
+);
+
+@function theme($key) {
+  @if map.has-key($theme-colors, $key) {
+    @return map.get($theme-colors, $key);
+  }
+
+  @error "Theme key `#{$key}` not found in theme map.";
+}

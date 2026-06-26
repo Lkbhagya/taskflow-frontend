@@ -1,0 +1,83 @@
+@use 'sass:color';
+@use 'themes' as *;
+@use 'variables' as v;
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == sm {
+    @media (min-width: v.$breakpoint-sm) {
+      @content;
+    }
+  } @else if $breakpoint == md {
+    @media (min-width: v.$breakpoint-md) {
+      @content;
+    }
+  } @else if $breakpoint == lg {
+    @media (min-width: v.$breakpoint-lg) {
+      @content;
+    }
+  } @else if $breakpoint == xl {
+    @media (min-width: v.$breakpoint-xl) {
+      @content;
+    }
+  }
+}
+
+@mixin button-reset {
+  appearance: none;
+  border: none;
+  background: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  cursor: pointer;
+}
+
+@mixin focus-ring {
+  outline: 2px solid theme('border-focus');
+  outline-offset: 2px;
+}
+
+@mixin card-surface {
+  background-color: theme('surface');
+  border: 1px solid theme('border');
+  border-radius: v.$radius-lg;
+  box-shadow: v.$shadow-card;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin input-base {
+  width: 100%;
+  padding: 12px 14px;
+  font-family: v.$font-family;
+  font-size: v.$font-size-sm;
+  color: theme('text-primary');
+  background-color: theme('surface');
+  border: 1px solid theme('border');
+  border-radius: v.$radius-md;
+  transition: border-color v.$transition-fast, box-shadow v.$transition-fast;
+
+  &::placeholder {
+    color: theme('text-muted');
+  }
+
+  &:hover:not(:disabled) {
+    border-color: color.adjust(v.$border-color, $lightness: -6%);
+  }
+
+  &:focus {
+    border-color: theme('secondary');
+    box-shadow: 0 0 0 3px theme('primary-light');
+    outline: none;
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background-color: theme('background-subtle');
+  }
+}
