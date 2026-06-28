@@ -1,6 +1,5 @@
 import { CalendarDays } from 'lucide-react';
 import { Separator } from '@/components/ui/separator';
-import type { Task } from '@/types/task';
 
 interface UnassignedTask {
   id: string;
